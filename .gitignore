@@ -1,0 +1,43 @@
+# Node.js
+node_modules/
+
+# Build directories for frontend
+build/
+dist/
+tmp/
+.cache/
+
+# Logs and debug files
+*.log
+*.out
+*.err
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.development
+
+# OS-specific files
+.DS_Store  
+Thumbs.db   
+
+# IDE/Editor settings
+.vscode/
+.idea/
+
+# Dependency directories
+docker-compose.override.yml
+*.dockerfile
+
+# Temporary files
+*.swp
+*.swo
+*.bak
+
+# Application specific
+*.db
+*.sqlite3
+
+#data files
+uploads/
