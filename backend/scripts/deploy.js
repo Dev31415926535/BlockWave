@@ -3,23 +3,20 @@ const { ethers } = require("hardhat");
 async function main() {
     console.log("Deploying contract...");
     
-    // 1. Get contract factory
     const YourContract = await ethers.getContractFactory("SupplyChain");
     
-    // 2. Deploy contract
-    const contract = await YourContract.deploy();
+    // Change the parameter value each time you deploy
+    const initialSupply = Math.floor(Math.random() * 1000); // Random value for demonstration
+    const contract = await YourContract.deploy(initialSupply);
     
-    // 3. Wait for deployment confirmation
     await contract.waitForDeployment();
     
-    // 4. Get deployment address using .target property
     console.log("Contract deployed to:", contract.target);
-  }
+}
   
-  main()
+main()
     .then(() => process.exit(0))
     .catch((error) => {
-      console.error("Error deploying contract:", error);
-      process.exit(1);
+        console.error("Error deploying contract:", error);
+        process.exit(1);
     });
-  

@@ -15,8 +15,9 @@
     "@openzeppelin/contracts": "^4.9.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
-    "ethers": "^6.13.5",
-    "express": "^4.21.2"
+    "ethers": "5.4",
+    "express": "^4.21.2",
+    "web3": "^4.16.0"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",

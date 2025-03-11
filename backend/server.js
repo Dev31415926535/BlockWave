@@ -11,6 +11,7 @@ const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 const contractABI = require("./artifacts/contracts/SupplyChain.sol/SupplyChain.json").abi;
 const provider = new ethers.providers.JsonRpcProvider("http://127.0.0.1:8545");
 const signer = provider.getSigner();
+console.log(provider);
 
 const contract = new ethers.Contract(contractAddress, contractABI, signer);
 
@@ -18,8 +19,9 @@ const contract = new ethers.Contract(contractAddress, contractABI, signer);
 app.post("/createProduct", async (req, res) => {
   const { name, manufacturer, location } = req.body;
   const tx = await contract.createProduct(name, manufacturer, location);
-  await tx.wait();
-  res.send("Product Created Successfully");
+  const receipt = await tx.wait();
+  console.log("receipt",receipt)
+  res.send({ message: "Product Created Successfully"}); 
 });
 
 // Update Product Status

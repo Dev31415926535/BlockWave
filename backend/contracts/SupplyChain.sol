@@ -17,7 +17,10 @@ contract SupplyChain is ERC721, Ownable {
     uint256 public productCounter;
     mapping(uint256 => Product) public products;
 
-    constructor() ERC721("SupplyChainProduct", "SCP") Ownable() {}
+    // Event to log product creation with product ID
+    event ProductCreated(uint256 productId, string name, string manufacturer, string location);
+
+    constructor(uint256 initialSupply) ERC721("SupplyChainProduct", "SCP") Ownable() {}
 
     function createProduct(
         string memory _name,
@@ -25,6 +28,7 @@ contract SupplyChain is ERC721, Ownable {
         string memory _location
     ) public onlyOwner {
         productCounter++;
+        
         products[productCounter] = Product({
             id: productCounter,
             name: _name,
@@ -34,6 +38,10 @@ contract SupplyChain is ERC721, Ownable {
             timestamp: block.timestamp
         });
 
+        // Emit the ProductCreated event with the new product ID
+        emit ProductCreated(productCounter, _name, _manufacturer, _location);
+
+        // Mint an ERC-721 token representing the product
         _mint(msg.sender, productCounter);
     }
 
